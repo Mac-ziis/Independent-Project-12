@@ -1,4 +1,4 @@
-namespace PowellApi.Models
+namespace LocalParks.Models
 {
   public class PagedParameters
   {

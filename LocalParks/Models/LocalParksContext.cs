@@ -1,22 +1,22 @@
 using Microsoft.EntityFrameworkCore;
 
-namespace  PowellApi.Models
+namespace  LocalParks.Models
 {
-  public class PowellApiContext : DbContext
+  public class LocalParksContext : DbContext
   {
-    public DbSet<Book> Books {get; set;}
+    public DbSet<Park> Parks {get; set;}
 
-    public PowellApiContext(DbContextOptions<PowellApiContext> options) : base(options)
+    public LocalParksContext(DbContextOptions<LocalParksContext> options) : base(options)
     {
     }
 
       protected override void OnModelCreating(ModelBuilder builder)
       {
-        builder.Entity<Book>()
+        builder.Entity<Park>()
         .HasData(
-          new Book { BookId = 1, Title = "Linux For Dummies", Author = "Fred Jumpturd", Summary = "Summary1Summary1Summary1Summary1Summary1Summary1"},
-          new Book { BookId = 2, Title = "Api for Dummies", Summary = "Summary2Summary2Summary2Summary2Summary2" },
-          new Book { BookId = 3, Title = "C# for Dummies", Summary = "Summary3Summary3Summary3Summary3Summary3"}
+          new Park { ParkId = 1, Name = "Laurelhurst Park", Location = "SE Portland, at the corner of Stark and Cesar E chavez Blvd", Summary = "Designed by the same man who designed Central prak in NYC, This is a beatiful addition to Portlands central Eastern side."},
+          new Park { ParkId = 2, Name = "Grant Park", Location = "NE Portland, At the corner of 33rd and Tillamook", Summary = "Nestled in next to Grant High School, this park offers a nice retreat from the city's hustle and bustle." },
+          new Park { ParkId = 3, Name = "Colonel Sumners Park", Location = "SE Portland, at the corner of 20th and Belmont Ave", Summary = "Used to have Thirsty Thursdays here until it got kinda dirty and the cops started showing up..."}
         );
       }
     }

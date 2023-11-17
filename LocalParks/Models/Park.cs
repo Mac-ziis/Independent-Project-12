@@ -1,13 +1,13 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace PowellApi.Models
+namespace LocalParks.Models
 {
-  public class Book
+  public class Park
   {
     [Required]
-    public string Title { get; set; }
-    public int BookId { get; set; }
-    public string Author {get; set;}
+    public int ParkId { get; set; }
+    public string Name { get; set; }
+    public string Location {get; set;}
     public string Summary {get; set; }
   
   }
