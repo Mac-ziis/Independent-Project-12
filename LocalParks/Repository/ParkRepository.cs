@@ -1,26 +1,26 @@
-using PowellApi.Contracts;
-using PowellApi.Models;
+using LocalParks.Contracts;
+using LocalParks.Models;
 
-namespace PowellApi.Repository
+namespace LocalParks.Repository
 {
-    public class BookRepository : RepositoryBase<Book>, IBookRepository
+    public class ParkRepository : RepositoryBase<Park>, IParkRepository
     {
-        public BookRepository(PowellApiContext repositoryContext)
+        public ParkRepository(LocalParksContext repositoryContext)
             : base(repositoryContext)
         {
         }
 
-        public PagedList<Book> GetBooks(PagedParameters bookParameters)
+        public PagedList<Park> GetParks(PagedParameters parkParameters)
         {
-            return PagedList<Book>.ToPagedList(FindAll(),
-                bookParameters.PageNumber,
-                bookParameters.PageSize);
+            return PagedList<Park>.ToPagedList(FindAll(),
+                parkParameters.PageNumber,
+                parkParameters.PageSize);
         }
 
-        public Book GetBookById(Guid bookId)
+        public Park GetParkById(Guid parkId)
         {
-            return FindByCondition(cust => cust.BookId.Equals(bookId))
-                .DefaultIfEmpty(new Book())
+            return FindByCondition(cust => cust.ParkId.Equals(parkId))
+                .DefaultIfEmpty(new Park())
                 .FirstOrDefault();
         }
 

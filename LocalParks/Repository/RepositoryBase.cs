@@ -1,14 +1,14 @@
 using Microsoft.EntityFrameworkCore;
-using PowellApi.Models;
+using LocalParks.Models;
 using System.Linq.Expressions;
-using PowellApi.Contracts;
+using LocalParks.Contracts;
 
-namespace PowellApi.Repository
+namespace LocalParks.Repository
 {
   public abstract class RepositoryBase<T> : IRepositoryBase<T> where T : class
   {
-    protected PowellApiContext RepositoryContext { get; set;}
-    public RepositoryBase(PowellApiContext repositoryContext)
+    protected LocalParksContext RepositoryContext { get; set;}
+    public RepositoryBase(LocalParksContext repositoryContext)
     {
       this.RepositoryContext = repositoryContext;
     }
