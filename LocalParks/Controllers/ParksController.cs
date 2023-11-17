@@ -7,33 +7,33 @@ using Swashbuckle.AspNetCore.SwaggerGen;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.AspNetCore.Authorization;
 
-namespace PowellApi.Controllers
+namespace LocalParks.Controllers
 {
     [Authorize]
   [Route("api/[controller]")]
   [ApiController]
-  public class BooksController : ControllerBase
+  public class ParksController : ControllerBase
   {
-    private readonly PowellApiContext _db;
-    public BooksController(PowellApiContext db)
+    private readonly LocalParksContext _db;
+    public BooksController(LocalParksContext db)
     {
       _db = db;
     }
 
     
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<Book>>> Get(string title, string author,  string summary)
+    public async Task<ActionResult<IEnumerable<Park>>> Get(string Name, string Location,  string summary)
     {
-        IQueryable<Book> query = _db.Books.AsQueryable();
+        IQueryable<Park> query = _db.Parks.AsQueryable();
 
-        if (title != null)
+        if (Name != null)
         {
-            query = query.Where(entry => entry.Title == title);
+            query = query.Where(entry => entry.Name == name);
         }
 
-        if (author != null)
+        if (Location != null)
         {
-            query = query.Where(entry => entry.Author == author);
+            query = query.Where(entry => entry.Location == location);
         }
 
         if (summary != null)
@@ -45,36 +45,36 @@ namespace PowellApi.Controllers
     }
 
     [HttpGet("{id}")]
-    public async Task<ActionResult<Book>> GetBook(int id)
+    public async Task<ActionResult<Park>> GetPark(int id)
     {
-        Book book = await _db.Books.FindAsync(id);
+        Park park = await _db.Parks.FindAsync(id);
 
-        if (book == null)
+        if (park == null)
         {
             return NotFound();
         }
 
-        return book;
+        return park;
     }
 
     [HttpPost]
-    public async Task<ActionResult<Book>> Post(Book book)
+    public async Task<ActionResult<Park>> Post(Park park)
     {
-        _db.Books.Add(book);
+        _db.Parks.Add(park);
         await _db.SaveChangesAsync();
-        return CreatedAtAction(nameof(GetBook), new{ id = book.BookId }, book);
+        return CreatedAtAction(nameof(GetPark), new{ id = park.ParkId }, park);
     }
 
 
     [HttpPut("{id}")]
-    public async Task<IActionResult> PutBook(int id, Book book)
+    public async Task<IActionResult> PutPark(int id, Park park)
     {
-        if (id != book.BookId)
+        if (id != park.ParkId)
         {
             return BadRequest();
         }
 
-        _db.Books.Update(book);
+        _db.Parks.Update(park);
 
         try
         {
@@ -82,7 +82,7 @@ namespace PowellApi.Controllers
         }
         catch (DbUpdateConcurrencyException)
         {
-          if (!BookExists(id))
+          if (!ParkExists(id))
           {
             return NotFound();
           }
@@ -95,25 +95,24 @@ namespace PowellApi.Controllers
         return NoContent();
     }
 
-    // DELETE: api/Books/5
     [HttpDelete("{id}")]
-    public async Task<IActionResult> DeleteBook(int id)
+    public async Task<IActionResult> DeletePark(int id)
     {
-        var book = await _db.Books.FindAsync(id);
-        if (book == null)
+        var park = await _db.Parks.FindAsync(id);
+        if (park == null)
         {
             return NotFound();
         }
 
-        _db.Books.Remove(book);
+        _db.Parks.Remove(park);
         await _db.SaveChangesAsync();
 
         return NoContent();
     }
 
-    private bool BookExists(int id)
+    private bool ParkExists(int id)
     {
-        return _db.Books.Any(e => e.BookId == id);
+        return _db.Parks.Any(e => e.ParkId == id);
     }
   }
 }

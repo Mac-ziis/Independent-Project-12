@@ -1,12 +1,12 @@
-using PowellApi.Auth;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using LocalParks.Auth;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 
-namespace PowellApi.Controllers
+namespace LocalParks.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -19,7 +19,8 @@ namespace PowellApi.Controllers
         public AuthenticateController(
             UserManager<IdentityUser> userManager,
             RoleManager<IdentityRole> roleManager,
-            IConfiguration configuration)
+            IConfiguration configuration
+        )
         {
             _userManager = userManager;
             _roleManager = roleManager;
@@ -46,13 +47,15 @@ namespace PowellApi.Controllers
                     authClaims.Add(new Claim(ClaimTypes.Role, userRole));
                 }
 
-               var token = GetToken(authClaims);
+                var token = GetToken(authClaims);
 
-                return Ok(new
-                {
-                    token = new JwtSecurityTokenHandler().WriteToken(token),
-                    expiration = token.ValidTo
-                });
+                return Ok(
+                    new
+                    {
+                        token = new JwtSecurityTokenHandler().WriteToken(token),
+                        expiration = token.ValidTo
+                    }
+                );
             }
             return Unauthorized();
         }
@@ -63,17 +66,28 @@ namespace PowellApi.Controllers
         {
             var userExists = await _userManager.FindByNameAsync(model.Username);
             if (userExists != null)
-                return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "User already exists!" });
+                return StatusCode(
+                    StatusCodes.Status500InternalServerError,
+                    new Response { Status = "Error", Message = "User already exists!" }
+                );
 
-            IdentityUser user = new()
-            {
-                Email = model.Email,
-                SecurityStamp = Guid.NewGuid().ToString(),
-                UserName = model.Username
-            };
+            IdentityUser user =
+                new()
+                {
+                    Email = model.Email,
+                    SecurityStamp = Guid.NewGuid().ToString(),
+                    UserName = model.Username
+                };
             var result = await _userManager.CreateAsync(user, model.Password);
             if (!result.Succeeded)
-                return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "User creation failed! Please check user details and try again." });
+                return StatusCode(
+                    StatusCodes.Status500InternalServerError,
+                    new Response
+                    {
+                        Status = "Error",
+                        Message = "User creation failed! Please check user details and try again."
+                    }
+                );
 
             return Ok(new Response { Status = "Success", Message = "User created successfully!" });
         }
@@ -84,17 +98,28 @@ namespace PowellApi.Controllers
         {
             var userExists = await _userManager.FindByNameAsync(model.Username);
             if (userExists != null)
-                return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "User already exists!" });
+                return StatusCode(
+                    StatusCodes.Status500InternalServerError,
+                    new Response { Status = "Error", Message = "User already exists!" }
+                );
 
-            IdentityUser user = new()
-            {
-                Email = model.Email,
-                SecurityStamp = Guid.NewGuid().ToString(),
-                UserName = model.Username
-            };
+            IdentityUser user =
+                new()
+                {
+                    Email = model.Email,
+                    SecurityStamp = Guid.NewGuid().ToString(),
+                    UserName = model.Username
+                };
             var result = await _userManager.CreateAsync(user, model.Password);
             if (!result.Succeeded)
-                return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "User creation failed! Please check user details and try again." });
+                return StatusCode(
+                    StatusCodes.Status500InternalServerError,
+                    new Response
+                    {
+                        Status = "Error",
+                        Message = "User creation failed! Please check user details and try again."
+                    }
+                );
 
             if (!await _roleManager.RoleExistsAsync(UserRoles.Admin))
                 await _roleManager.CreateAsync(new IdentityRole(UserRoles.Admin));
@@ -114,15 +139,20 @@ namespace PowellApi.Controllers
 
         private JwtSecurityToken GetToken(List<Claim> authClaims)
         {
-            var authSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWT:Secret"]));
+            var authSigningKey = new SymmetricSecurityKey(
+                Encoding.UTF8.GetBytes(_configuration["JWT:Secret"])
+            );
 
             var token = new JwtSecurityToken(
                 issuer: _configuration["JWT:ValidIssuer"],
                 audience: _configuration["JWT:ValidAudience"],
                 expires: DateTime.Now.AddHours(3),
                 claims: authClaims,
-                signingCredentials: new SigningCredentials(authSigningKey, SecurityAlgorithms.HmacSha256)
-                );
+                signingCredentials: new SigningCredentials(
+                    authSigningKey,
+                    SecurityAlgorithms.HmacSha256
+                )
+            );
 
             return token;
         }
