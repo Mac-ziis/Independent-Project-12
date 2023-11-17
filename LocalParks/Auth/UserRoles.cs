@@ -1,4 +1,4 @@
-namespace PowellApi.Auth
+namespace LocalParks.Auth
 {
     public static class UserRoles
     {

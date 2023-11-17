@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace PowellApi.Auth
+namespace LocalParks.Auth
 {
     public class ApplicationDbContext : IdentityDbContext<IdentityUser>
     {

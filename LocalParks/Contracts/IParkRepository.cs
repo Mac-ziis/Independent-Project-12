@@ -1,10 +1,10 @@
-using PowellApi.Models;
+using LocalParks.Models;
 
-namespace PowellApi.Contracts
+namespace LocalParks.Contracts
 {
-    public interface IBookRepository : IRepositoryBase<Book>
+    public interface IParkRepository : IRepositoryBase<Book>
     {
-        PagedList<Book> GetBooks(PagedParameters bookParameters);
-        Book GetBookById(Guid bookId);
+        PagedList<Park> GetParks(PagedParameters parkParameters);
+        Book GetParkById(Guid bookId);
     }
 }

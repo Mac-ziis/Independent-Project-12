@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace PowellApi.Auth
+namespace LocalParks.Auth
 {
     public class LoginModel
     {
