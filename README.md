@@ -9,7 +9,7 @@
 * _C#_
 * _Entity Framework Core_
 * _ASP .NET Core Identity_
-+ _Swashbuckle_
+* _Swashbuckle_
 * _Pomelo_
 * _JWT Bearer_
 * _.NET 6.0_
@@ -29,6 +29,16 @@ If you have not already, install the `dotnet-ef` tool by running the following c
 ```
 dotnet tool install --global dotnet-ef --version 6.0.0
 ```
+
+Also, Install these tools for the implimentation of Pagination and Authentication:
+
+```
+dotnet add package Microsoft.EntityFrameworkCore.Tools --version 6.0.0
+dotnet add package Microsoft.AspNetCore.Authentication.JwtBearer --version 6.0.0
+dotnet add package Pomelo.EntityFrameworkCore.MySql --version 6.0.0
+
+```
+
 
 ### Set Up and Run Project
 
@@ -74,8 +84,7 @@ dotnet tool install --global dotnet-ef --version 6.0.0
 
 ## Known Bugs
 
-* _Any known issues_
-* _should go here_
+* _No known bugs at the moment. Feedback and bug reports are always welcome._
 
 ## License
 
