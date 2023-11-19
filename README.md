@@ -22,7 +22,7 @@ _This project is called "LocalParks" and it allows the user to view seeded infor
 
 ## Setup/Installation Requirements
 
-Install the tools that are introduced in [this series of lessons on LearnHowToProgram.com](https://www.learnhowtoprogram.com/c-and-net/getting-started-with-c).
+Install the tools that are introduced in [this series of lessons on LearnHowToProgram.com](https://part-time-evening.learnhowtoprogram.com/c-and-net/building-an-api/adding-a-model-and-database).
 
 If you have not already, install the `dotnet-ef` tool by running the following command in your terminal:
 
