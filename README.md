@@ -6,24 +6,71 @@
 
 ## Technologies Used
 
-* _List all_
-* _the major technologies_
-* _you used in your project_
-* _here_
+* _C#_
+* _Entity Framework Core_
+* _ASP .NET Core Identity_
++ _Swashbuckle_
+* _Pomelo_
+* _JWT Bearer_
+* _.NET 6.0_
+* _Visual Studio Code_
+* _GitHub_
 
 ## Description
 
-_{This is a detailed description of your application. Give as much detail as needed to explain what the application does as well as any other information you want users or other developers to have.}_
+_This project is called "LocalParks" and it allows the user to view seeded information that is stored withink the API with MySql and while using ASP.NET Core. The API will store information about Local Parks including: ID, Name, Location, and Summary. Users will then be able to call on this information in various ways as well as add to the information. Pagination has been added to the Swagger page, allowing the viewer to choose how many responses and pages are seen at a time. Tokening and authentication will add a layer of security to this API, in the case of the user having a client side application made, this will allow the API to remain secure and require users who call upon the information to have a JWT Bearer token._
 
 ## Setup/Installation Requirements
 
-* _This is a great place_
-* _to list setup instructions_
-* _in a simple_
-* _easy-to-understand_
-* _format_
+Install the tools that are introduced in [this series of lessons on LearnHowToProgram.com](https://www.learnhowtoprogram.com/c-and-net/getting-started-with-c).
 
-_{Leave nothing to chance! You want it to be easy for potential users, employers and collaborators to run your app. Do I need to run a server? How should I set up my databases? Is there other code this application depends on? We recommend deleting the project from your desktop, re-cloning the project from GitHub, and writing down all the steps necessary to get the project working again.}_
+If you have not already, install the `dotnet-ef` tool by running the following command in your terminal:
+
+```
+dotnet tool install --global dotnet-ef --version 6.0.0
+```
+
+### Set Up and Run Project
+
+1. Clone this repo.
+2. Open the terminal and navigate to this project's main directory called "LocalParks.Solution".
+3. Within the production directory "LocalParks", create two new files: `appsettings.json` and `appsettings.Development.json`.
+4. Within `appsettings.json`, put in the following code. Make sure to replacing the `uid` and `pwd` values in the MySQL database connection string with your own username and password for MySQL. For the LearnHowToProgram.com lessons, we always assume the `uid` is `root` and the `pwd` is `epicodus`.
+
+```json
+{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft.AspNetCore": "Warning"
+    }
+  },
+  "AllowedHosts": "*",
+  "ConnectionStrings": {
+    "DefaultConnection": "Server=localhost;Port=3306;database=cretaceous_api;uid=[YOUR_USERNAME];pwd=[YOUR_MYSQL_PASSWORD];"
+  }
+}
+```
+
+5. Within `appsettings.Development.json`, add the following code:
+
+```json
+{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft": "Trace",
+      "Microsoft.AspNetCore": "Information",
+      "Microsoft.Hosting.Lifetime": "Information"
+    }
+  }
+}
+```
+
+6. Install all necessary packages by running `dotnet restore` in the shell while within the production directory "LocalParks".
+6. Create the database using the migrations in the LocalParks project. Open your shell (e.g., Terminal or GitBash) to the production directory "LocalParks", and run `dotnet ef database update`. 
+7. Within the production directory "LocalParks", run `dotnet watch run` in the command line to start the project server and open the webpage within your browser. 
+9. Use your program of choice to make API calls. In your API calls, use the domain _http://localhost:7099_. 
 
 ## Known Bugs
 
