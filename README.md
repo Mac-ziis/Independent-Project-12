@@ -30,7 +30,7 @@ If you have not already, install the `dotnet-ef` tool by running the following c
 dotnet tool install --global dotnet-ef --version 6.0.0
 ```
 
-Also, Install these tools for the implimentation of Pagination and Authentication:
+Also, if working off of the second branch "WithAuth" Install these tools for the implimentation of Pagination and Authentication:
 
 ```
 dotnet add package Microsoft.EntityFrameworkCore.Tools --version 6.0.0
@@ -84,7 +84,7 @@ dotnet add package Pomelo.EntityFrameworkCore.MySql --version 6.0.0
 
 ## Known Bugs
 
-* _No known bugs at the moment. Feedback and bug reports are always welcome._
+* _"WithAuth" branch currently under construction._
 
 ## License
 
