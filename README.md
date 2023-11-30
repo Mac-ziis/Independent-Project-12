@@ -18,7 +18,7 @@
 
 ## Description
 
-_This project is called "LocalParks" and it allows the user to view seeded information that is stored within the API with MySql and while using ASP.NET Core. The API will store information about Local Parks including: ID, Name, Location, and Summary. Users will then be able to call on this information in various ways as well as add their own information to the database. Pagination has been added to the Swagger page, allowing the viewer to choose how many responses and pages are seen at a time. Tokening and authentication will add a layer of security to this API, in the case of the user having a client side application made, this will allow the API to remain secure and will require users who call upon the information to have a JWT Bearer token._
+_This project is called "LocalParks" and it allows the user to view seeded information that is stored within the API with MySql and while using ASP.NET Core. The API will store information about Local Parks including: ID, Name, Location, and Summary. Users will then be able to call on this information in various ways as well as add their own information to the database. Pagination has been added to the Swagger page, allowing the viewer to choose how many responses and pages are seen at a time._
 
 ## Setup/Installation Requirements
 
@@ -30,11 +30,10 @@ If you have not already, install the `dotnet-ef` tool by running the following c
 dotnet tool install --global dotnet-ef --version 6.0.0
 ```
 
-Also, Install these tools for the implimentation of Pagination and Authentication:
+Also, Install these tools for the implimentation of Pagination:
 
 ```
 dotnet add package Microsoft.EntityFrameworkCore.Tools --version 6.0.0
-dotnet add package Microsoft.AspNetCore.Authentication.JwtBearer --version 6.0.0
 dotnet add package Pomelo.EntityFrameworkCore.MySql --version 6.0.0
 
 ```
