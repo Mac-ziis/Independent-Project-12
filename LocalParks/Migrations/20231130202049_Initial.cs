@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace LocalParks.Migrations.LocalParks
+namespace LocalParks.Migrations
 {
     public partial class Initial : Migration
     {

@@ -1,5 +1,4 @@
 using LocalParks.Models;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.EntityFrameworkCore;
@@ -11,7 +10,6 @@ using Newtonsoft.Json;
 
 namespace LocalParks.Controllers
 {
-    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ParksController : ControllerBase

@@ -2,16 +2,18 @@
 using LocalParks.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace LocalParks.Migrations.LocalParks
+namespace LocalParks.Migrations
 {
     [DbContext(typeof(LocalParksContext))]
-    partial class LocalParksContextModelSnapshot : ModelSnapshot
+    [Migration("20231130202049_Initial")]
+    partial class Initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
